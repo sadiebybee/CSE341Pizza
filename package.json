@@ -19,7 +19,9 @@
   "homepage": "https://github.com/sadiebybee/CSE341Pizza#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.0.0",
     "express": "^5.1.0",
+    "mongodb": "^6.17.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {

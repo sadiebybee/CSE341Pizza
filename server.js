@@ -1,16 +1,16 @@
-const express = require('express');
-const app = express();
+var express = require("express");
+var app = express();
 const port = process.env.PORT || 3000;
 const { connectDb } = require("./db/connection");
 const routes = require("./routes");
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Origin", "*");
   next();
-})
+});
 
-app.use('/', routes);
+app.use("/", routes);
 
 // server starts when db is connected
 connectDb()
@@ -20,6 +20,6 @@ connectDb()
     });
   })
   .catch((error) => {
-    console.error('Failed to connect to database:', error);
+    console.error("Failed to connect to database:", error);
     process.exit(1);
   });

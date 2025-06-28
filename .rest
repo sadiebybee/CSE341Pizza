@@ -1,0 +1,10 @@
+### 
+GET http://localhost:3000 HTTP/1.1
+
+###
+GET http://localhost:3000/pizza HTTP/1.1
+
+###
+GET http://localhost:3000/pizza/68601b0c914598c7bb96b045 HTTP/1.1
+
+

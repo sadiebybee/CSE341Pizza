@@ -1,0 +1,14 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Expenses API",
+    "version": "1.0.0"
+  },
+  "host": "cse341-projects-xi6e.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {}
+}

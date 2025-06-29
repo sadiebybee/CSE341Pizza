@@ -5,9 +5,9 @@
     "description": "Pizza Review API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://cse341pizza-s0vs.onrender.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/pizza/": {
       "get": {
@@ -51,12 +51,14 @@
     "/pizza": {
       "post": {
         "summary": "Create a new pizza",
-        "parameters": [{
-          "in": "body",
-          "name": "pizza",
-          "required": true,
-          "schema": { "$ref": "#/definitions/Pizza" }
-        }],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pizza",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Pizza" }
+          }
+        ],
         "responses": {
           "201": { "description": "Pizza created" },
           "400": { "description": "Invalid input" }
@@ -84,12 +86,14 @@
       },
       "delete": {
         "summary": "Delete a pizza",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": { "description": "Pizza deleted" }
         }
@@ -102,12 +106,14 @@
       },
       "post": {
         "summary": "Create a new review",
-        "parameters": [{
-          "in": "body",
-          "name": "review",
-          "required": true,
-          "schema": { "$ref": "#/definitions/Review" }
-        }],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "review",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Review" }
+          }
+        ],
         "responses": {
           "201": { "description": "Review created" }
         }
@@ -116,7 +122,9 @@
     "/reviews/{id}": {
       "get": {
         "summary": "Get a single review",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
         "responses": { "200": { "description": "Review found" } }
       },
       "put": {
@@ -134,7 +142,9 @@
       },
       "delete": {
         "summary": "Delete a review",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
         "responses": { "200": { "description": "Review deleted" } }
       }
     },
@@ -159,19 +169,23 @@
       },
       "post": {
         "summary": "Add a favorite",
-        "parameters": [{
-          "in": "body",
-          "name": "favorite",
-          "required": true,
-          "schema": { "$ref": "#/definitions/Favorite" }
-        }],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "favorite",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Favorite" }
+          }
+        ],
         "responses": { "201": { "description": "Favorite added" } }
       }
     },
     "/favorites/{id}": {
       "delete": {
         "summary": "Delete a favorite",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
         "responses": { "200": { "description": "Favorite deleted" } }
       }
     },

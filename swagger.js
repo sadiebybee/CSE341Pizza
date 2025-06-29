@@ -1,14 +1,12 @@
-const swaggerAutogen = require('swagger-autogen')();
+const swaggerAutogen = require("swagger-autogen")();
 const doc = {
   info: {
-    title: 'My API',
-    description: 'Expenses API',
+    title: "My API",
+    description: "Expenses API",
   },
-  // host: "localhost:3000",
-  // schemes: ["http"],
-  host: 'https://cse341pizza-s0vs.onrender.com',
-  schemes: ['https'],
+  host: "localhost:3000",
+  schemes: ["http"],
 };
-const outputFile = './swagger.json';
-const endpointsFiles = ['./server.js'];
+const outputFile = "./swagger.json";
+const endpointsFiles = ["./server.js"];
 swaggerAutogen(outputFile, endpointsFiles, doc);

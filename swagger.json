@@ -5,7 +5,7 @@
     "description": "Pizza Review API",
     "version": "1.0.0"
   },
-  "host": "https://cse341pizza.onrender.com",
+  "host": "cse341pizza.onrender.com",
   "basePath": "/",
   "schemes": ["https"],
   "paths": {

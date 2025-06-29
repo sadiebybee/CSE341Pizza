@@ -6,7 +6,7 @@ const doc = {
   },
   // host: "localhost:3000",
   // schemes: ["http"],
-  host: 'https://cse341pizza.onrender.com',
+  host: 'cse341pizza.onrender.com',
   schemes: ['https'],
 };
 const outputFile = './swagger.json';

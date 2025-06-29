@@ -2,13 +2,245 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Expenses API",
+    "description": "Pizza Review API",
     "version": "1.0.0"
   },
-  "host": "cse341-projects-xi6e.onrender.com",
+  "host": "https://cse341pizza-s0vs.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
-  "paths": {}
+  "schemes": ["https"],
+  "paths": {
+    "/pizza/": {
+      "get": {
+        "summary": "Get all pizzas",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of pizzas"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pizza/{id}": {
+      "get": {
+        "summary": "Get a pizza by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pizza": {
+      "post": {
+        "summary": "Create a new pizza",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "pizza",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Pizza" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Pizza created" },
+          "400": { "description": "Invalid input" }
+        }
+      },
+      "put": {
+        "summary": "Update a pizza",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "pizza",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Pizza" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Pizza updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a pizza",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Pizza deleted" }
+        }
+      }
+    },
+    "/reviews": {
+      "get": {
+        "summary": "Get all reviews",
+        "responses": { "200": { "description": "List of reviews" } }
+      },
+      "post": {
+        "summary": "Create a new review",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "review",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Review" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Review created" }
+        }
+      }
+    },
+    "/reviews/{id}": {
+      "get": {
+        "summary": "Get a single review",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": { "200": { "description": "Review found" } }
+      },
+      "put": {
+        "summary": "Update a review",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "in": "body",
+            "name": "review",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Review" }
+          }
+        ],
+        "responses": { "200": { "description": "Review updated" } }
+      },
+      "delete": {
+        "summary": "Delete a review",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": { "200": { "description": "Review deleted" } }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/User" }
+            }
+          }
+        }
+      }
+    },
+    "/favorites": {
+      "get": {
+        "summary": "Get all favorites",
+        "responses": { "200": { "description": "List of favorites" } }
+      },
+      "post": {
+        "summary": "Add a favorite",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "favorite",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Favorite" }
+          }
+        ],
+        "responses": { "201": { "description": "Favorite added" } }
+      }
+    },
+    "/favorites/{id}": {
+      "delete": {
+        "summary": "Delete a favorite",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": { "200": { "description": "Favorite deleted" } }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Authenticate user via OAuth and return JWT",
+        "responses": {
+          "200": { "description": "Login successful, JWT returned" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pizza": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "brand": { "type": "string" },
+        "description": { "type": "string" },
+        "createdDate": { "type": "string", "format": "date-time" },
+        "updatedDate": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "pizzaId": { "type": "string" },
+        "rating": { "type": "number" },
+        "commentReview": { "type": "string" },
+        "priceRating": { "type": "number" },
+        "createdDate": { "type": "string", "format": "date-time" },
+        "updatedDate": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Favorite": {
+      "type": "object",
+      "properties": {
+        "pizzaId": { "type": "string" },
+        "reviewId": { "type": "string" },
+        "createdDate": { "type": "string", "format": "date-time" },
+        "updatedDate": { "type": "string", "format": "date-time" }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "username": { "type": "string" },
+        "email": { "type": "string" },
+        "oAuth": { "type": "string" },
+        "createdDate": { "type": "string", "format": "date-time" },
+        "updatedDate": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
 }

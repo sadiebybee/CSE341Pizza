@@ -4,10 +4,10 @@ const doc = {
     title: 'My API',
     description: 'Expenses API',
   },
-  // host: "localhost:3000",
-  // schemes: ["http"],
-  host: 'cse341pizza.onrender.com',
-  schemes: ['https'],
+  host: "localhost:3000",
+  schemes: ["http"],
+  // host: 'cse341pizza.onrender.com',
+  // schemes: ['https'],
 };
 const outputFile = './swagger.json';
 const endpointsFiles = ['./server.js'];

@@ -4,7 +4,7 @@ const { User } = require("../project");
 
 const routes = require("express").Router();
 
-routes.get("/", async (req, res) => {
+routes.get("/api-docs", async (req, res) => {
   res.send(`<a href="/auth/signin">Login with Google</a>`);
 });
 
@@ -12,35 +12,35 @@ routes.get("/", async (req, res) => {
 routes.get("/api-docs/auth/signin", passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 routes.get('/api-docs/auth/',
-  passport.authenticate('google', { failureRedirect: '/' }),
+  passport.authenticate('google', { failureRedirect: '/auth/signin' }),
   (req, res) => {
     res.redirect('/api-docs');
   });
 
 // profile
-routes.get('/api-docs/start', (req, res) => {
+routes.get('/api-docs', (req, res) => {
   if (!req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect('/auth/signin');
   }
 // log out
-  res.redirect('/');
+  res.redirect('/auth/signin');
 });
 
 
-routes.get('/api-docs/logout.html', (req, res) => {
-  req.logout(() => {
-    res.redirect('./logout.html');
-  });
-});
+// routes.get('/api-docs/logout.html', (req, res) => {
+//   req.logout(() => {
+//     res.redirect('./logout.html');
+//   });
+// });
 
-const path = require('path');
+// const path = require('path');
 
-routes.get("/api-docs/start.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
+// routes.get("/api-docs", (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     return res.redirect('/');
+//   }
   
-  res.sendFile(path.resolve(__dirname, '..', 'start.html'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', 'start.html'));
+// });
 
 module.exports = routes;

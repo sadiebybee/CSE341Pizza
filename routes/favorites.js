@@ -1,5 +1,7 @@
 const express = require('express');
 const favoritesRouter = express.Router();
+const isAuthenticated = require('./middlewareAuth');
+
 const {
   getAll,
   getSingle,
@@ -9,10 +11,10 @@ const {
 } = require('../controllers/favorites');
 // const { verifyToken } = require("../validators/reviewValidator");
 
-favoritesRouter.get('/', getAll);
-favoritesRouter.get('/:id', getSingle);
-favoritesRouter.post('/', create);
-favoritesRouter.put('/:id', update);
-favoritesRouter.delete('/:id', remove);
+favoritesRouter.get('/', isAuthenticated, getAll);
+favoritesRouter.get('/:id', isAuthenticated, getSingle);
+favoritesRouter.post('/', isAuthenticated, create);
+favoritesRouter.put('/:id', isAuthenticated, update);
+favoritesRouter.delete('/:id', isAuthenticated, remove);
 
 module.exports = favoritesRouter;

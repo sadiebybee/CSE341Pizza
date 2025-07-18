@@ -30,3 +30,8 @@ connectDb()
     console.error("Failed to connect to database:", error);
     process.exit(1);
   });
+
+// 
+
+const pizzaRouter = require('./routes/pizza');
+app.use('/pizza', pizzaRouter);

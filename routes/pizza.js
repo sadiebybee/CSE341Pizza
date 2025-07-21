@@ -1,7 +1,7 @@
 const express = require("express");
 const pizzaRouter = express.Router();
 
-const { getAll, getSingle } = require("../controllers/pizza");
+// const { getAll, getSingle } = require("../controllers/pizza");
 const isAuthenticated = require('./middlewareAuth');
 
 const {

@@ -111,7 +111,7 @@ const update = async (req, res) => {
   const updatedFavorite = {
     userId: new ObjectId(req.body.userId),
     pizzaId: new ObjectId(req.body.pizzaId),
-    reviewId: Number(req.body.reviewId),
+    reviewId: new ObjectId(req.body.reviewId),
     updatedDate: new Date(),
   };
 
@@ -146,7 +146,7 @@ const remove = async (req, res) => {
   if (result.deletedCount > 0) {
     res.status(200).send();
   } else {
-    res.status(404).json({ error: 'Favoite pizza not found' });
+    res.status(404).json({ error: 'Favorite pizza not found' });
   }
 };
 

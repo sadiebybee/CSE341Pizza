@@ -145,23 +145,22 @@ const updatePizza = async (req, res, next) => {
       });
     }
 
-    // Convert dates to Date objects if present
     if (pizza.createdDate) pizza.createdDate = new Date(pizza.createdDate);
     if (pizza.updatedDate) pizza.updatedDate = new Date(pizza.updatedDate);
 
-    const result = await client
-      .db("pizzaReviewDB")
-      .collection("pizzas")
-      .replaceOne({ _id: new ObjectId(pizzaId) }, pizza);
+    const collection = client.db("pizzaReviewDB").collection("pizzas");
+
+    const result = await collection.replaceOne({ _id: new ObjectId(pizzaId) }, pizza);
 
     if (result.modifiedCount > 0) {
-      res.status(204).end();
+      const updatedPizza = await collection.findOne({ _id: new ObjectId(pizzaId) });
+      res.status(200).json(updatedPizza); // ✅ Send updated pizza as JSON
     } else {
       res.status(404).json({ message: "Pizza not found or not updated." });
     }
   } catch (error) {
     console.error("Error updating pizza:", error);
-    res.status(500).json({ message: "Failed to update pizza." });
+    res.status(500).json({ message: "Failed to update pizza.", error: error.message });
   }
 };
 

@@ -1,46 +1,96 @@
 const passport = require('passport');
 
-const { User } = require("../project");
+const path = require('path');
+
+const { User, Recipe } = require("../project.js");
 
 const routes = require("express").Router();
 
-routes.get("/api-docs", async (req, res) => {
+routes.get("/", async (req, res) => {
   res.send(`<a href="/auth/signin">Login with Google</a>`);
 });
 
-// google login route
-routes.get("/api-docs/auth/signin", passport.authenticate('google', { scope: ['profile', 'email'] }));
+// GOOGLE LOGIN ROUTE
+routes.get("/auth/signin", passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-routes.get('/api-docs/auth/',
-  passport.authenticate('google', { failureRedirect: '/auth/signin' }),
+// CALLBACK AUTHICATION ROUTE
+routes.get('/auth/',
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('/api-docs');
-  });
-
-// profile
-routes.get('/api-docs', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/auth/signin');
-  }
-// log out
-  res.redirect('/auth/signin');
+    res.redirect('/start');
 });
 
+// PROFILE
+routes.get('/start', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  //where it goes after they log in
+  res.redirect('./start.html');
+});
 
-// routes.get('/api-docs/logout.html', (req, res) => {
+//LOG OUT
+// routes.get('/logout', (req, res) => {
 //   req.logout(() => {
-//     res.redirect('./logout.html');
+//     res.redirect('/');
 //   });
 // });
 
-// const path = require('path');
+routes.get('/logout', (req, res) => {
+  req.logout(() => {
+    res.redirect('/logout.html');
+  });
+});
 
-// routes.get("/api-docs", (req, res) => {
-//   if (!req.isAuthenticated()) {
-//     return res.redirect('/');
-//   }
+
+routes.get("/start.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
   
-//   res.sendFile(path.resolve(__dirname, '..', 'start.html'));
-// });
+  res.sendFile(path.resolve(__dirname, '..', 'start.html'));
+});
+
+// PAGES
+
+routes.get("/profile.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  
+  res.sendFile(path.resolve(__dirname, '..', 'profile.html'));
+});
+
+routes.get("/scan.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  
+  res.sendFile(path.resolve(__dirname, '..', 'scan.html'));
+});
+
+routes.get("/social.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  
+  res.sendFile(path.resolve(__dirname, '..', 'social.html'));
+});
+
+routes.get("/general.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  
+  res.sendFile(path.resolve(__dirname, '..', 'general.html'));
+});
+
+routes.get("/list.html", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  
+  res.sendFile(path.resolve(__dirname, '..', 'list.html'));
+});
 
 module.exports = routes;

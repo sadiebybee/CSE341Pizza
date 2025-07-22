@@ -1,8 +1,13 @@
 var express = require("express");
 var app = express();
 const port = process.env.PORT || 3000;
-const { connectDb } = require("./db/connection");
+const { connectDb } = require("./project.js");
 const routes = require("./routes");
+const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+require('./config/google_auth.js');
+
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -17,7 +22,20 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}));
 app.use("/", routes);
+
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+const projectsRouter = require('./routes/auth.js')
+app.use('/', projectsRouter);
 
 // server starts when db is connected
 connectDb()

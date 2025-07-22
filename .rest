@@ -7,7 +7,7 @@ GET http://localhost:3000 HTTP/1.1
 GET http://localhost:3000/pizza HTTP/1.1
 
 ###
-GET http://localhost:3000/pizza/68601b0c914598c7bb96b045 HTTP/1.1
+GET http://localhost:3000/pizza/687fe58c9e6fbc43d6575f54 HTTP/1.1
 
 ###
 # POST
@@ -15,29 +15,29 @@ POST http://localhost:3000/pizza HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "",
-    "brand" : "",
-    "description" : "",
-    "createdDate" : "",
-    "updatedDate" : "",
+    "name": "Cheese Pizza",
+    "brand" : "Dominos",
+    "description" : "Very Cheesy Pizza",
+    "createdDate" : "07-22-2025",
+    "updatedDate" : "07-22-2025"
 }
 
 ###
 # PUT
-PUT http://localhost:3000/pizza/# HTTP/1.1
+PUT http://localhost:3000/pizza/687fe58c9e6fbc43d6575f54 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "",
-    "brand" : "",
-    "description" : "",
-    "createdDate" : "",
-    "updatedDate" : "",
+    "name": "Cheese Pizza",
+    "brand" : "Dominos",
+    "description" : "Super Cheesy Pizza",
+    "createdDate" : "07-21-2025",
+    "updatedDate" : "07-22-2025"
 }
 
 ###
 # DELETE
-DELETE http://localhost:3000/pizza/# HTTP/1.1
+DELETE http://localhost:3000/pizza/687fe58c9e6fbc43d6575f54 HTTP/1.1
 
 
 //GET ALL REVIEWS

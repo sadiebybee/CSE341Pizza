@@ -14,16 +14,37 @@
     "/pizza/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
+        "produces": ["application/json"],
+        "responses": {
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "post": {
+        "summary": "Create a new pizza",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["name", "brand"],
+              "properties": {
+                "name": { "type": "string", "example": "any" },
+                "brand": { "type": "string", "example": "any" },
+                "description": { "type": "string", "example": "any" },
+                "createdDate": { "type": "string", "format": "date", "example": "2025-07-22" },
+                "updatedDate": { "type": "string", "format": "date", "example": "2025-07-22" }
+              }
+            }
+          }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Pizza created successfully" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
@@ -73,9 +94,7 @@
     "/pizza/{id}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -85,15 +104,60 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "200": { "description": "OK" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "put": {
+        "summary": "Update an existing pizza",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["name", "brand"],
+              "properties": {
+                "name": { "type": "string", "example": "any" },
+                "brand": { "type": "string", "example": "any" },
+                "description": { "type": "string", "example": "any" },
+                "createdDate": { "type": "string", "format": "date", "example": "2025-07-22" },
+                "updatedDate": { "type": "string", "format": "date", "example": "2025-07-22" }
+              }
+            }
           }
+        ],
+        "responses": {
+          "204": { "description": "Pizza updated successfully (no content)" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Pizza not found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a pizza",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Pizza deleted successfully" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Pizza not found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
@@ -169,12 +233,8 @@
       "get": {
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
@@ -186,38 +246,20 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
-                  "example": "any"
-                },
-                "pizzaId": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "commentReview": {
-                  "example": "any"
-                },
-                "priceRating": {
-                  "example": "any"
-                }
+                "userId": { "example": "any" },
+                "pizzaId": { "example": "any" },
+                "rating": { "example": "any" },
+                "commentReview": { "example": "any" },
+                "priceRating": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
@@ -233,15 +275,9 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" }
         }
       },
       "put": {
@@ -259,38 +295,20 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
-                  "example": "any"
-                },
-                "pizzaId": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "commentReview": {
-                  "example": "any"
-                },
-                "priceRating": {
-                  "example": "any"
-                }
+                "userId": { "example": "any" },
+                "pizzaId": { "example": "any" },
+                "rating": { "example": "any" },
+                "commentReview": { "example": "any" },
+                "priceRating": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
+          "200": { "description": "OK" },
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" }
         }
       },
       "delete": {
@@ -304,15 +322,9 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" }
         }
       }
     },
@@ -458,13 +470,9 @@
     "/api-docs/": {
       "get": {
         "description": "",
-        "produces": [
-          "text/html"
-        ],
+        "produces": ["text/html"],
         "responses": {
-          "200": {
-            "description": "OK"
-          }
+          "200": { "description": "OK" }
         }
       }
     }

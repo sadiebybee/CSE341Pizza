@@ -29,13 +29,6 @@ routes.get('/start', (req, res) => {
   res.redirect('./start.html');
 });
 
-//LOG OUT
-// routes.get('/logout', (req, res) => {
-//   req.logout(() => {
-//     res.redirect('/');
-//   });
-// });
-
 routes.get('/logout', (req, res) => {
   req.logout(() => {
     res.redirect('/logout.html');
@@ -49,48 +42,6 @@ routes.get("/start.html", (req, res) => {
   }
   
   res.sendFile(path.resolve(__dirname, '..', 'start.html'));
-});
-
-// PAGES
-
-routes.get("/profile.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  res.sendFile(path.resolve(__dirname, '..', 'profile.html'));
-});
-
-routes.get("/scan.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  res.sendFile(path.resolve(__dirname, '..', 'scan.html'));
-});
-
-routes.get("/social.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  res.sendFile(path.resolve(__dirname, '..', 'social.html'));
-});
-
-routes.get("/general.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  res.sendFile(path.resolve(__dirname, '..', 'general.html'));
-});
-
-routes.get("/list.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  res.sendFile(path.resolve(__dirname, '..', 'list.html'));
 });
 
 module.exports = routes;

@@ -4,8 +4,11 @@ const pizzaRouter = require('./pizza');
 const router = express.Router();
 const reviewsRouter = require('./reviews');
 
-router.use('/pizza', pizzaRouter);
-router.use('/reviews', reviewsRouter);
-router.use('/api-docs', apiDocs);
+const isAuthenticated = require('./middlewareAuth');
+
+router.use('/pizza', isAuthenticated, pizzaRouter);
+router.use('/reviews', isAuthenticated, reviewsRouter);
+router.use('/api-docs', isAuthenticated, apiDocs);
+
 
 module.exports = router;

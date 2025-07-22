@@ -8,11 +8,12 @@ const {
   remove,
 } = require('../controllers/reviews');
 // const { verifyToken } = require("../validators/reviewValidator");
+const isAuthenticated = require('./middlewareAuth');
 
-reviewsRouter.get('/', getAll);
-reviewsRouter.get('/:id', getSingle);
-reviewsRouter.post('/', create);
-reviewsRouter.put('/:id', update);
-reviewsRouter.delete('/:id', remove);
+reviewsRouter.get('/', isAuthenticated, getAll);
+reviewsRouter.get('/:id', isAuthenticated, getSingle);
+reviewsRouter.post('/', isAuthenticated, create);
+reviewsRouter.put('/:id', isAuthenticated, update);
+reviewsRouter.delete('/:id', isAuthenticated, remove);
 
 module.exports = reviewsRouter;

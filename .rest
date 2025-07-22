@@ -81,3 +81,40 @@ content-type: application/json
 // Delete review by id
 ###
 DELETE http://localhost:3000/reviews/686ed483bf55f33fee1a53c7 HTTP/1.1
+
+
+
+//FAVORITES SECTION
+//Get all favorites
+###
+GET http://localhost:3000/favorites HTTP/1.1
+
+//Get favorite by ID
+###
+GET http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1
+
+//Create favorite
+###
+POST http://localhost:3000/favorites HTTP/1.1
+content-type: application/json
+
+{ 
+    "userId": "686ecbd3d8dd0e1f9235e9e4", 
+    "pizzaId": "68601b0c914598c7bb96b045", 
+    "reviewId": "68730c65c455119f0a88664c"
+}
+
+// Update/PUT favorite by id
+###
+PUT http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1
+content-type: application/json
+
+{ 
+    "userId": "686ecbd3d8dd0e1f9235e9e4", 
+    "pizzaId": "68601b0c914598c7bb96b045", 
+    "reviewId": "68730c65c455119f0a88664c"
+}
+
+// Delete review by id
+###
+DELETE http://localhost:3000/favorites/687847c5895110f7c435e94d HTTP/1.1

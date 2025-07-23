@@ -6,7 +6,6 @@ const path = require('path');
 
 const routes = express.Router();
 
-
 routes.get('/', (req, res) => {
   res.send(`<a href="/auth/google">Login with Google</a>`);
 });
@@ -29,5 +28,24 @@ routes.get('/api-docs', (req, res) => {
 
   res.sendFile(path.resolve(__dirname, '..', '/api-docs'));
 });
+
+// ROUTES
+
+routes.get('#/default/get_pizza_', (req, res) => {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+    return res.redirect('#/default/get_pizza_');
+  }
+
+  res.sendFile(path.resolve(__dirname, '..', ''));
+});
+
+routes.get('#/default/post_pizza_', (req, res) => {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+    return res.redirect('#/default/post_pizza_');
+  }
+
+  res.sendFile(path.resolve(__dirname, '..', ''));
+});
+
 
 module.exports = routes;

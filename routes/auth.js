@@ -4,38 +4,36 @@ const { User, Recipe } = require("../project.js");
 
 const routes = require("express").Router();
 
-// HOME PAGE (Login link)
+// STARTS HERE TO LOGIN
 routes.get("/", async (req, res) => {
   res.send(`<a href="/auth/signin">Login with Google</a>`);
 });
 
 // GOOGLE LOGIN ROUTE
-routes.get("/auth/signin", passport.authenticate('google', { scope: ['profile', 'email'] }));
+routes.get("/auth", passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-// CALLBACK AUTHENTICATION ROUTE (After Google OAuth)
+// CALLBACK AUTHENTICATION ROUTE 
 routes.get('/auth/',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // Redirect to /api-docs after successful login
     res.redirect('/api-docs');
   });
 
 // LOG OUT ROUTE
 routes.get('/logout', (req, res) => {
   req.logout(() => {
-    // After logout, redirect to /logout.html
-    res.redirect('/logout.html');
+    res.redirect('/');
   });
 });
 
-// PROTECTED PAGE (API Docs or User Dashboard)
-routes.get("/api-docs", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
+// // PROTECTED PAGE (API Docs or User Dashboard)
+// routes.get("/api-docs", (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     return res.redirect('/');
+//   }
   
-  // Send API documentation page or any other content you want for authenticated users
-  res.sendFile(path.resolve(__dirname, '..', 'api-docs.html')); // Adjust the path as needed
-});
+//   // Send API documentation page or any other content you want for authenticated users
+//   res.sendFile(path.resolve(__dirname, '..', 'api-docs.html')); // Adjust the path as needed
+// });
 
 module.exports = routes;

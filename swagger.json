@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Expenses API",
+    "title": "Pizza Review App",
+    "description": "Users can log in review pizzas and add favorites",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
@@ -15,10 +15,16 @@
     "/pizza/": {
       "get": {
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
-          "200": { "description": "OK" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "post": {
@@ -68,7 +74,9 @@
     "/pizza/{id}": {
       "get": {
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -78,9 +86,18 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK" },
-          "404": { "description": "Not Found" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "put": {
@@ -121,11 +138,11 @@
           "200": {
             "description": "OK"
           },
-          "204": {
-            "description": "No Content"
-          },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -146,6 +163,12 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -156,8 +179,12 @@
       "get": {
         "description": "",
         "responses": {
-          "200": { "description": "OK" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       },
       "post": {
@@ -169,20 +196,38 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": { "example": "any" },
-                "pizzaId": { "example": "any" },
-                "rating": { "example": "any" },
-                "commentReview": { "example": "any" },
-                "priceRating": { "example": "any" }
+                "userId": {
+                  "example": "any"
+                },
+                "pizzaId": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "commentReview": {
+                  "example": "any"
+                },
+                "priceRating": {
+                  "example": "any"
+                }
               }
             }
           }
         ],
         "responses": {
-          "200": { "description": "OK" },
-          "201": { "description": "Created" },
-          "400": { "description": "Bad Request" },
-          "500": { "description": "Internal Server Error" }
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
     },
@@ -198,9 +243,15 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK" },
-          "400": { "description": "Bad Request" },
-          "404": { "description": "Not Found" }
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       },
       "put": {
@@ -218,20 +269,38 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": { "example": "any" },
-                "pizzaId": { "example": "any" },
-                "rating": { "example": "any" },
-                "commentReview": { "example": "any" },
-                "priceRating": { "example": "any" }
+                "userId": {
+                  "example": "any"
+                },
+                "pizzaId": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "commentReview": {
+                  "example": "any"
+                },
+                "priceRating": {
+                  "example": "any"
+                }
               }
             }
           }
         ],
         "responses": {
-          "200": { "description": "OK" },
-          "204": { "description": "No Content" },
-          "400": { "description": "Bad Request" },
-          "404": { "description": "Not Found" }
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       },
       "delete": {
@@ -245,9 +314,15 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK" },
-          "400": { "description": "Bad Request" },
-          "404": { "description": "Not Found" }
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -393,9 +468,143 @@
     "/api-docs/": {
       "get": {
         "description": "",
-        "produces": ["text/html"],
+        "produces": [
+          "text/html"
+        ],
         "responses": {
-          "200": { "description": "OK" }
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/post_pizza_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/get_pizza__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/put_pizza__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/delete_pizza__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/post_reviews_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/get_reviews__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/put_reviews__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/delete_reviews__id_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/#/default/get_api_docs_": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
         }
       }
     },

@@ -97,7 +97,6 @@ const createPizza = async (req, res, next) => {
       });
     }
 
-    // Convert dates to Date objects if present
     if (pizza.createdDate) pizza.createdDate = new Date(pizza.createdDate);
     else pizza.createdDate = new Date();
 
@@ -110,7 +109,12 @@ const createPizza = async (req, res, next) => {
       .insertOne(pizza);
 
     if (result.acknowledged) {
-      res.status(201).json(result);
+      const createdPizza = await client
+        .db("pizzaReviewDB")
+        .collection("pizzas")
+        .findOne({ _id: result.insertedId });
+
+      res.status(201).json(createdPizza);
     } else {
       res.status(500).json({ message: "Failed to create pizza." });
     }

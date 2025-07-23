@@ -1,3 +1,4 @@
+mongoose.connect(process.env.MONGODB_URI);
 const express = require("express");
 const { connectDb } = require("../db/connection");
 const ObjectId = require("mongodb").ObjectId;

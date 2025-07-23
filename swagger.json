@@ -417,11 +417,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": { "example": "John" },
-                "lastName": { "example": "Doe" },
-                "email": { "example": "john.doe@example.com" },
-                "username": { "example": "johndoe" },
-                "password": { "example": "password123" }
+                "firstName": { "example": "any" },
+                "lastName": { "example": "any" },
+                "email": { "example": "any" },
+                "username": { "example": "any" },
+                "password": { "example": "any" },
+                "createdDate": {"example": "any"},
+                "updatedDate": {"example": "any"}
               }
             }
           }
@@ -466,11 +468,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": { "example": "Updated" },
-                "lastName": { "example": "User" },
-                "email": { "example": "updated@example.com" },
-                "username": { "example": "updateduser" },
-                "password": { "example": "newpassword123" }
+                "firstName": { "example": "any" },
+                "lastName": { "example": "any" },
+                "email": { "example": "any" },
+                "username": { "example": "any" },
+                "password": { "example": "any" },
+                "createdDate": {"example": "any"},
+                "updatedDate": {"example": "any"}
               }
             }
           }

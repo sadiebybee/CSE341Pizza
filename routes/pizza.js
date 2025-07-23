@@ -2,7 +2,7 @@ const express = require("express");
 const pizzaRouter = express.Router();
 
 // const { getAll, getSingle } = require("../controllers/pizza");
-const isAuthenticated = require('./middlewareAuth');
+// const isAuthenticated = require('./middlewareAuth');
 
 const {
   getAll,
@@ -12,10 +12,10 @@ const {
   deletePizza,
 } = require("../controllers/pizza");
 
-pizzaRouter.get("/", isAuthenticated, getAll);
-pizzaRouter.get("/:id", isAuthenticated, getSingle);
-pizzaRouter.post("/", isAuthenticated, createPizza);
-pizzaRouter.put("/:id", isAuthenticated, updatePizza);
-pizzaRouter.delete("/:id", isAuthenticated, deletePizza);
+pizzaRouter.get("/", getAll);
+pizzaRouter.get("/:id", getSingle);
+pizzaRouter.post("/", createPizza);
+pizzaRouter.put("/:id", updatePizza);
+pizzaRouter.delete("/:id", deletePizza);
 
 module.exports = pizzaRouter;

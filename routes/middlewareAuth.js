@@ -1,9 +1,9 @@
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated && req.isAuthenticated()) {
-    return next();
-  }
+// function isAuthenticated(req, res, next) {
+//   if (req.isAuthenticated && req.isAuthenticated()) {
+//     return next();
+//   }
 
-  return res.redirect('./start');
-}
+//   return res.redirect('./start');
+// }
 
-module.exports = isAuthenticated;
+// module.exports = isAuthenticated;

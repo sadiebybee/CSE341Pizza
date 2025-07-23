@@ -1,27 +1,39 @@
-const { client } = require("../db/connection");
 const { ObjectId } = require("mongodb");
+const { client } = require("../db/connection");
 
-/***************************** 
- * Get all Users
+/*****************************
+ * Validator Function
+ ******************************/
+function validateUsers(user) {
+  const errors = [];
+  if (!user.username || user.username.length < 2) {
+    errors.push("Username is required and must be at least 2 characters.");
+  }
+  if (!user.email || !user.email.includes("@")) {
+    errors.push("Valid email is required.");
+  }
+  return errors;
+}
+
+/*****************************
+ * GET All Users
  ******************************/
 const getAll = async (req, res, next) => {
   try {
-    const users = await client
-      .db("usersDB")
+    const result = await client
+      .db("userDB")
       .collection("users")
       .find()
       .toArray();
-
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(users);
-  } catch (err) {
-    console.error("Error getting all users:", err);
-    res.status(500).json({ error: "Failed to get users" });
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error retrieving users:", error);
+    res.status(500).json({ message: "Failed to retrieve users." });
   }
 };
 
-/***************************** 
- * Get single user by ID
+/*****************************
+ * GET Single User by ID
  ******************************/
 const getSingle = async (req, res, next) => {
   try {
@@ -30,34 +42,35 @@ const getSingle = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
-    const user = await client
-      .db("usersDB")
+    const result = await client
+      .db("userDB")
       .collection("users")
       .findOne({ _id: new ObjectId(userId) });
 
-    if (!user) {
-      return res.status(404).json({ message: "User was not found" });
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: "User not found." });
     }
-
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(user);
-  } catch (err) {
-    console.error("Error getting user by ID:", err);
-    res.status(500).json({ error: "Failed to get the user" });
+  } catch (error) {
+    console.error("Error retrieving user:", error);
+    res.status(500).json({ message: "Failed to retrieve user." });
   }
 };
 
-/***************************** 
+/*****************************
  * Create User
  ******************************/
 const createUsers = async (req, res, next) => {
   try {
     const user = {
-      userId: req.body.userId,
-      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
-      createdDate: req.body.createdDate ? new Date(req.body.createdDate) : new Date(),
-      updatedDate: req.body.updatedDate ? new Date(req.body.updatedDate) : new Date(),
+      username: req.body.username,
+      password: req.body.password,
+      createdDate: req.body.createdDate,
+      updatedDate: req.body.updatedDate,
     };
 
     const validateErrors = validateUsers(user);
@@ -68,24 +81,24 @@ const createUsers = async (req, res, next) => {
       });
     }
 
+    if (user.createdDate) user.createdDate = new Date(user.createdDate);
+    if (user.updatedDate) user.updatedDate = new Date(user.updatedDate);
+
     const result = await client
-      .db("usersDB")
+      .db("userDB")
       .collection("users")
       .insertOne(user);
-
-    if (result.acknowledged) {
-      res.status(201).json(result);
-    } else {
-      res.status(500).json({ message: "Failed to create user." });
-    }
+    res.status(201).json(result);
   } catch (error) {
     console.error("Error creating user:", error);
-    res.status(500).json({ message: "Failed to create user.", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to create user.", error: error.message });
   }
 };
 
-/***************************** 
- * Update User
+/*****************************
+ * Update Users
  ******************************/
 const updateUsers = async (req, res, next) => {
   try {
@@ -94,14 +107,17 @@ const updateUsers = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid user ID" });
     }
 
-    const user = {
-      userId: req.body.userId,
-      username: req.body.username,
+    const users = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
-      updatedDate: req.body.updatedDate ? new Date(req.body.updatedDate) : new Date(),
+      username: req.body.username,
+      password: req.body.password,
+      createdDate: req.body.createdDate,
+      updatedDate: req.body.updatedDate,
     };
 
-    const validateErrors = validateUsers(user);
+    const validateErrors = validateUsers(users);
     if (validateErrors.length > 0) {
       return res.status(400).json({
         message: "Validation Errors",
@@ -109,27 +125,34 @@ const updateUsers = async (req, res, next) => {
       });
     }
 
-    const collection = client.db("usersDB").collection("users");
+    if (users.createdDate) users.createdDate = new Date(users.createdDate);
+    if (users.updatedDate) users.updatedDate = new Date(users.updatedDate);
 
-    const result = await collection.updateOne(
+    const collection = client.db("userDB").collection("users");
+
+    const result = await collection.replaceOne(
       { _id: new ObjectId(userId) },
-      { $set: user }
+      users
     );
 
     if (result.modifiedCount > 0) {
-      const updatedUser = await collection.findOne({ _id: new ObjectId(userId) });
-      res.status(200).json(updatedUser);
+      const updatedUsers = await collection.findOne({
+        _id: new ObjectId(userId),
+      });
+      res.status(200).json(updatedUsers);
     } else {
       res.status(404).json({ message: "User not found or not updated." });
     }
   } catch (error) {
     console.error("Error updating user:", error);
-    res.status(500).json({ message: "Failed to update user.", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to update user.", error: error.message });
   }
 };
 
-/***************************** 
- * Delete User
+/*****************************
+ * Delete Users
  ******************************/
 const deleteUsers = async (req, res, next) => {
   try {
@@ -139,7 +162,7 @@ const deleteUsers = async (req, res, next) => {
     }
 
     const result = await client
-      .db("usersDB")
+      .db("userDB")
       .collection("users")
       .deleteOne({ _id: new ObjectId(userId) });
 
@@ -154,4 +177,10 @@ const deleteUsers = async (req, res, next) => {
   }
 };
 
-module.exports = { getAll, getSingle, createUsers, updateUsers, deleteUsers };
+module.exports = {
+  getAll,
+  getSingle,
+  createUsers,
+  updateUsers,
+  deleteUsers,
+};

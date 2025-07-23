@@ -21,7 +21,7 @@ function validateUsers(user) {
 const getAll = async (req, res, next) => {
   try {
     const result = await client
-      .db("userDB")
+      .db("pizzaReviewDB")
       .collection("users")
       .find()
       .toArray();
@@ -43,7 +43,7 @@ const getSingle = async (req, res, next) => {
     }
 
     const result = await client
-      .db("userDB")
+      .db("pizzaReviewDB")
       .collection("users")
       .findOne({ _id: new ObjectId(userId) });
 
@@ -85,7 +85,7 @@ const createUsers = async (req, res, next) => {
     if (user.updatedDate) user.updatedDate = new Date(user.updatedDate);
 
     const result = await client
-      .db("userDB")
+      .db("pizzaReviewDB")
       .collection("users")
       .insertOne(user);
     res.status(201).json(result);
@@ -128,7 +128,7 @@ const updateUsers = async (req, res, next) => {
     if (users.createdDate) users.createdDate = new Date(users.createdDate);
     if (users.updatedDate) users.updatedDate = new Date(users.updatedDate);
 
-    const collection = client.db("userDB").collection("users");
+    const collection = client.db("pizzaReviewDB").collection("users");
 
     const result = await collection.replaceOne(
       { _id: new ObjectId(userId) },
@@ -162,7 +162,7 @@ const deleteUsers = async (req, res, next) => {
     }
 
     const result = await client
-      .db("userDB")
+      .db("pizzaReviewDB")
       .collection("users")
       .deleteOne({ _id: new ObjectId(userId) });
 

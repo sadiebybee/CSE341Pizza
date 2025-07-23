@@ -3,12 +3,14 @@ const apiDocs = require('./apiDocs');
 const pizzaRouter = require('./pizza');
 const router = express.Router();
 const reviewsRouter = require('./reviews');
+const userRouter = require('./users');
 
 // const isAuthenticated = require('./middlewareAuth');
 
 router.use('/pizza', pizzaRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/api-docs', apiDocs);
+router.use('/users', userRouter);
 
 
 module.exports = router;

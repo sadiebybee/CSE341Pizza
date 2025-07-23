@@ -7,9 +7,9 @@ const reviewsRouter = require('./reviews');
 
 const isAuthenticated = require('./middlewareAuth');
 
-router.use('/pizza', isAuthenticated, pizzaRouter);
-router.use('/reviews', isAuthenticated, reviewsRouter);
-router.use('/api-docs', isAuthenticated, apiDocs);
+router.use('/pizza', pizzaRouter);
+router.use('/reviews', reviewsRouter);
+router.use('/api-docs', apiDocs);
 
 
 module.exports = router;

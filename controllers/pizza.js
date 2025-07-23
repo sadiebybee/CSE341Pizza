@@ -1,4 +1,3 @@
-mongoose.connect(process.env.MONGODB_URI);
 const express = require("express");
 const { connectDb } = require("../db/connection");
 const ObjectId = require("mongodb").ObjectId;
@@ -44,60 +43,13 @@ const createPizza = async (req, res, next) => {
       updatedDate: req.body.updatedDate,
     };
 
-    // const validateErrors = validatePizza(pizza);
-    // if (validateErrors.length > 0) {
-    //   return res.status(400).json({
-    //     message: "Validation Errors",
-    //     errors: validateErrors,
-    //   });
-    // }
-
-    const createPizza = async (req, res, next) => {
-      try {
-        const pizza = {
-          name: req.body.name,
-          brand: req.body.brand,
-          description: req.body.description,
-          createdDate: req.body.createdDate,
-          updatedDate: req.body.updatedDate,
-        };
-
-        const errors = [];
-
-        if (!pizza.name || pizza.name.trim().length < 2) {
-          errors.push("Pizza name must be at least 2 characters long.");
-        }
-
-        if (!pizza.brand || pizza.brand.trim().length === 0) {
-          errors.push("Brand is required.");
-        }
-
-        if (!pizza.description || pizza.description.trim().length === 0) {
-          errors.push("Description is required.");
-        }
-
-        const dateRegex = /^\d{4}-\d{2}-\d{2}$/; 
-        if (!dateRegex.test(pizza.createdDate)) {
-          errors.push("createdDate must be in MM-DD-YYYY format.");
-        }
-
-        if (!dateRegex.test(pizza.updatedDate)) {
-          errors.push("updatedDate must be in MM-DD-YYYY format.");
-        }
-
-        if (errors.length > 0) {
-          return res.status(400).json({
-            message: "Validation Errors",
-            errors: errors,
-          });
-        }
-
-        res.status(201).json({ message: "Pizza created successfully", pizza });
-      } catch (error) {
-        res.status(500).json({ message: "Failed to create pizza.", error: error.message });
-      }
-    };
-
+    const validateErrors = validatePizza(pizza);
+    if (validateErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation Errors",
+        errors: validateErrors,
+      });
+    }
 
     const result = await mongodb
       .getDb()

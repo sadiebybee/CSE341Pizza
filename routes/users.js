@@ -1,9 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-
-// const { getAll, getSingle } = require("../controllers/pizza");
-const isAuthenticated = require('./middlewareAuth');
-
+  
 const {
   getAll,
   getSingle,
@@ -11,11 +8,11 @@ const {
   updateUsers,
   deleteUsers,
 } = require("../controllers/users");
-
-userRouter.get("/", isAuthenticated, getAll);
-userRouter.get("/:id", isAuthenticated, getSingle);
-userRouter.post("/", isAuthenticated, createUsers);
-userRouter.put("/:id", isAuthenticated, updateUsers);
-userRouter.delete("/:id", isAuthenticated, deleteUsers);
-
+ 
+userRouter.get("/",  getAll);
+userRouter.get("/:id",  getSingle);
+userRouter.post("/",  createUsers);
+userRouter.put("/:id",  updateUsers);
+userRouter.delete("/:id",  deleteUsers);
+ 
 module.exports = userRouter;

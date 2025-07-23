@@ -38,14 +38,4 @@ routes.get("/api-docs", (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'api-docs.html')); // Adjust the path as needed
 });
 
-// LOGGED-IN USER PROFILE PAGE (OPTIONAL)
-routes.get("/start.html", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  
-  // You can serve a specific page or dashboard here
-  res.sendFile(path.resolve(__dirname, '..', 'start.html')); // Or redirect to API docs page
-});
-
 module.exports = routes;

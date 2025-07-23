@@ -3,7 +3,7 @@ function isAuthenticated(req, res, next) {
     return next();
   }
 
-  return res.redirect('/');
+  return res.redirect('/api-docs');
 }
 
 module.exports = isAuthenticated;

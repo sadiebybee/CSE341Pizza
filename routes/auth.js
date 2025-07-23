@@ -36,7 +36,7 @@ routes.get('#/default/get_pizza_', (req, res) => {
     return res.redirect('#/default/get_pizza_');
   }
 
-  res.sendFile(path.resolve(__dirname, '..', ''));
+  res.sendFile(path.resolve(__dirname, '..', '#/default/get_pizza_'));
 });
 
 routes.get('#/default/post_pizza_', (req, res) => {
@@ -44,7 +44,7 @@ routes.get('#/default/post_pizza_', (req, res) => {
     return res.redirect('#/default/post_pizza_');
   }
 
-  res.sendFile(path.resolve(__dirname, '..', ''));
+  res.sendFile(path.resolve(__dirname, '..', '#/default/post_pizza_'));
 });
 
 

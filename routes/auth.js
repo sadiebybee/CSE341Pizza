@@ -7,7 +7,6 @@ const path = require('path');
 const routes = express.Router();
 
 
-
 routes.get('/', (req, res) => {
   res.send(`<a href="/auth/google">Login with Google</a>`);
 });

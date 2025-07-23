@@ -43,13 +43,13 @@ const createPizza = async (req, res, next) => {
       updatedDate: req.body.updatedDate,
     };
 
-    // const validateErrors = validatePizza(pizza);
-    // if (validateErrors.length > 0) {
-    //   return res.status(400).json({
-    //     message: "Validation Errors",
-    //     errors: validateErrors,
-    //   });
-    // }
+    const validateErrors = validatePizza(pizza);
+    if (validateErrors.length > 0) {
+      return res.status(400).json({
+        message: "Validation Errors",
+        errors: validateErrors,
+      });
+    }
 
     const result = await mongodb
       .getDb()

@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 const port = process.env.PORT || 3000;
-// const { connectDb } = require("./project.js");
+const { connectDb } = require("./project.js");
 const routes = require("./routes");
 const passport = require('passport');
 const session = require('express-session');

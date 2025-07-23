@@ -127,36 +127,36 @@ routes.get('#/default/get_favorites_', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '..', '#/default/post_favorites_'));
 // });
 
-routes.get('#/default/get_favorites__id_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/get_favorites__id_');
-  }
+// routes.get('#/default/get_favorites__id_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/get_favorites__id_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites__id_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites__id_'));
+// });
 
-routes.get('#/default/put_favorites__id_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/put_favorites__id_');
-  }
+// routes.get('#/default/put_favorites__id_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/put_favorites__id_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/put_favorites__id_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/put_favorites__id_'));
+// });
 
-routes.get('#/default/delete_favorites__id_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/delete_favorites__id_');
-  }
+// routes.get('#/default/delete_favorites__id_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/delete_favorites__id_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/delete_favorites__id_e'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/delete_favorites__id_e'));
+// });
 
-routes.get('#/default/get_api_docs_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/get_api_docs_');
-  }
+// routes.get('#/default/get_api_docs_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/get_api_docs_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/get_api_docs_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_api_docs_'));
+// });
 
 module.exports = routes;

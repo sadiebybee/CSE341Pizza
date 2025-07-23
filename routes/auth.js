@@ -39,13 +39,13 @@ routes.get('#/default/get_pizza_', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '#/default/get_pizza_'));
 });
 
-routes.get('#/default/post_pizza_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/post_pizza_');
-  }
+// routes.get('#/default/post_pizza_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/post_pizza_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/post_pizza_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/post_pizza_'));
+// });
 
 routes.get('#/default/get_pizza__id_', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -79,13 +79,13 @@ routes.get('#/default/get_reviews_', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '#/default/get_reviews_'));
 });
 
-routes.get('#/default/post_reviews_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/post_reviews_');
-  }
+// routes.get('#/default/post_reviews_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/post_reviews_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/post_reviews_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/post_reviews_'));
+// });
 
 routes.get('#/default/get_reviews__id_', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -119,13 +119,13 @@ routes.get('#/default/get_favorites_', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites_'));
 });
 
-routes.get('#/default/post_favorites_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/post_favorites_');
-  }
+// routes.get('#/default/post_favorites_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/post_favorites_');
+//   }
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/post_favorites_'));
-});
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/post_favorites_'));
+// });
 
 routes.get('#/default/get_favorites__id_', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {

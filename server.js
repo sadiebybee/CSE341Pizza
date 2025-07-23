@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 const port = process.env.PORT || 3000;
-// const { connectDb } = require("./project.js");
+const { connectDb } = require("./db/connection");
 const routes = require("./routes");
 const passport = require('passport');
 const session = require('express-session');
@@ -38,16 +38,16 @@ const projectsRouter = require('./routes/auth.js')
 app.use('/', projectsRouter);
 
 // server starts when db is connected
-// connectDb()
-//   .then(() => {
-//     app.listen(port, () => {
-//       console.log(`Web Server is running on port ${port}`);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("Failed to connect to database:", error);
-//     process.exit(1);
-//   });
+connectDb()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Web Server is running on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to connect to database:", error);
+    process.exit(1);
+  });
 
 
 const pizzaRouter = require('./routes/pizza');

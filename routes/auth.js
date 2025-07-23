@@ -31,13 +31,15 @@ routes.get('/api-docs', (req, res) => {
 
 // ROUTES
 
-routes.get('#/default/get_pizza_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/get_pizza_');
-  }
+// GET ALL PIZZA
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/get_pizza_'));
-});
+// routes.get('#/default/get_pizza_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/get_pizza_');
+//   }
+
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_pizza_'));
+// });
 
 routes.get('#/default/post_pizza_', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -71,21 +73,23 @@ routes.get('#/default/delete_pizza__id_', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '#/default/delete_pizza__id_'));
 });
 
-routes.get('#/default/get_reviews_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/get_reviews_');
-  }
+// GET ALL REVIEWS
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/get_reviews_'));
-});
-
-// routes.get('#/default/post_reviews_', (req, res) => {
+// routes.get('#/default/get_reviews_', (req, res) => {
 //   if (!req.isAuthenticated || !req.isAuthenticated()) {
-//     return res.redirect('#/default/post_reviews_');
+//     return res.redirect('#/default/get_reviews_');
 //   }
 
-//   res.sendFile(path.resolve(__dirname, '..', '#/default/post_reviews_'));
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_reviews_'));
 // });
+
+routes.get('#/default/post_reviews_', (req, res) => {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+    return res.redirect('#/default/post_reviews_');
+  }
+
+  res.sendFile(path.resolve(__dirname, '..', '#/default/post_reviews_'));
+});
 
 routes.get('#/default/get_reviews__id_', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -111,13 +115,19 @@ routes.get('#/default/delete_reviews__id_', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '#/default/delete_reviews__id_'));
 });
 
-routes.get('#/default/get_favorites_', (req, res) => {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect('#/default/get_favorites_');
-  }
+// FAVORITES
 
-  res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites_'));
-});
+// GET ALL FAVORITES
+
+// routes.get('#/default/get_favorites_', (req, res) => {
+//   if (!req.isAuthenticated || !req.isAuthenticated()) {
+//     return res.redirect('#/default/get_favorites_');
+//   }
+
+//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites_'));
+// });
+
+// POST FAVORITES
 
 // routes.get('#/default/post_favorites_', (req, res) => {
 //   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -127,6 +137,8 @@ routes.get('#/default/get_favorites_', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '..', '#/default/post_favorites_'));
 // });
 
+// GET FAVORITES BY ID
+
 // routes.get('#/default/get_favorites__id_', (req, res) => {
 //   if (!req.isAuthenticated || !req.isAuthenticated()) {
 //     return res.redirect('#/default/get_favorites__id_');
@@ -134,6 +146,8 @@ routes.get('#/default/get_favorites_', (req, res) => {
 
 //   res.sendFile(path.resolve(__dirname, '..', '#/default/get_favorites__id_'));
 // });
+
+// PUT FAVORITES
 
 // routes.get('#/default/put_favorites__id_', (req, res) => {
 //   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -143,6 +157,8 @@ routes.get('#/default/get_favorites_', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '..', '#/default/put_favorites__id_'));
 // });
 
+// DELETE FAVORITES
+
 // routes.get('#/default/delete_favorites__id_', (req, res) => {
 //   if (!req.isAuthenticated || !req.isAuthenticated()) {
 //     return res.redirect('#/default/delete_favorites__id_');
@@ -151,12 +167,12 @@ routes.get('#/default/get_favorites_', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '..', '#/default/delete_favorites__id_e'));
 // });
 
-// routes.get('#/default/get_api_docs_', (req, res) => {
-//   if (!req.isAuthenticated || !req.isAuthenticated()) {
-//     return res.redirect('#/default/get_api_docs_');
-//   }
+routes.get('#/default/get_api_docs_', (req, res) => {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+    return res.redirect('#/default/get_api_docs_');
+  }
 
-//   res.sendFile(path.resolve(__dirname, '..', '#/default/get_api_docs_'));
-// });
+  res.sendFile(path.resolve(__dirname, '..', '#/default/get_api_docs_'));
+});
 
 module.exports = routes;

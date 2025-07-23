@@ -1,6 +1,5 @@
 const express = require("express");
 const pizzaRouter = express.Router();
-const isAuthenticated = require('./middlewareAuth');
 
 const {
   getAll,

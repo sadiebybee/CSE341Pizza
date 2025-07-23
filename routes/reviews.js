@@ -1,6 +1,5 @@
 const express = require('express');
 const reviewsRouter = express.Router();
-const isAuthenticated = require('./middlewareAuth');
 const {
   getAll,
   getSingle,
@@ -10,10 +9,10 @@ const {
 } = require('../controllers/reviews');
 // const { verifyToken } = require("../validators/reviewValidator");
 
-reviewsRouter.get('/', isAuthenticated, getAll);
-reviewsRouter.get('/:id', isAuthenticated, getSingle);
-reviewsRouter.post('/', isAuthenticated, create);
-reviewsRouter.put('/:id', isAuthenticated, update);
+reviewsRouter.get('/', getAll);
+reviewsRouter.get('/:id', getSingle);
+reviewsRouter.post('/',  create);
+reviewsRouter.put('/:id', update);
 reviewsRouter.delete('/:id', remove);
 
 module.exports = reviewsRouter;

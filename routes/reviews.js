@@ -1,7 +1,6 @@
 const express = require('express');
 const reviewsRouter = express.Router();
 const isAuthenticated = require('./middlewareAuth');
-const passport = require('passport');
 const {
   getAll,
   getSingle,

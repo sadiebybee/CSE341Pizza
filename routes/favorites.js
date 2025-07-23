@@ -1,6 +1,7 @@
 const express = require('express');
 const favoritesRouter = express.Router();
 const isAuthenticated = require('./middlewareAuth');
+const passport = require('passport');
 
 const {
   getAll,

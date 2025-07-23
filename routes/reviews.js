@@ -1,6 +1,7 @@
 const express = require('express');
 const reviewsRouter = express.Router();
 const isAuthenticated = require('./middlewareAuth');
+const passport = require('passport');
 const {
   getAll,
   getSingle,
@@ -14,6 +15,6 @@ reviewsRouter.get('/', isAuthenticated, getAll);
 reviewsRouter.get('/:id', isAuthenticated, getSingle);
 reviewsRouter.post('/', isAuthenticated, create);
 reviewsRouter.put('/:id', isAuthenticated, update);
-reviewsRouter.delete('/:id', isAuthenticated, remove);
+reviewsRouter.delete('/:id', remove);
 
 module.exports = reviewsRouter;

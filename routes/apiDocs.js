@@ -2,6 +2,7 @@ const express = require('express');
 const apiDocs = express.Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
+const passport = require('passport');
 
 
 apiDocs.use('/', swaggerUi.serve);

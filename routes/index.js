@@ -4,6 +4,7 @@ const pizzaRouter = require('./pizza');
 const router = express.Router();
 const myController = require('../controllers/pizza');
 const reviewsRouter = require('./reviews');
+const passport = require('passport');
 
 const isAuthenticated = require('./middlewareAuth');
 

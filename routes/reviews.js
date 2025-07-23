@@ -1,5 +1,6 @@
 const express = require('express');
 const reviewsRouter = express.Router();
+const isAuthenticated = require('./middlewareAuth');
 const {
   getAll,
   getSingle,
@@ -8,7 +9,6 @@ const {
   remove,
 } = require('../controllers/reviews');
 // const { verifyToken } = require("../validators/reviewValidator");
-const isAuthenticated = require('./middlewareAuth');
 
 reviewsRouter.get('/', isAuthenticated, getAll);
 reviewsRouter.get('/:id', isAuthenticated, getSingle);

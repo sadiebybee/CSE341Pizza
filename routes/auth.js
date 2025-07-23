@@ -6,7 +6,7 @@ const routes = require("express").Router();
 
 // STARTS HERE TO LOGIN
 routes.get("/", async (req, res) => {
-  res.send(`<a href="/auth/api-docs">Login with Google</a>`);
+  res.send(`<a href="/api-docs">Login with Google</a>`);
 });
 
 // GOOGLE LOGIN ROUTE

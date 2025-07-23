@@ -16,13 +16,11 @@ routes.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-routes.get('/auth/google/callback',
+routes.get('/auth/',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // Successful login: redirect to protected route
     res.redirect('/api-docs');
-  }
-);
+});
 
 
 routes.get('/api-docs', (req, res) => {
@@ -30,14 +28,7 @@ routes.get('/api-docs', (req, res) => {
     return res.redirect('/');
   }
 
-
-  res.sendFile(path.resolve(__dirname, '..', 'api-docs.html'));
-});
-
-routes.get('/logout', (req, res) => {
-  req.logout(() => {
-    res.redirect('/logout.html'); 
-  });
+  res.sendFile(path.resolve(__dirname, '..', '/api-docs'));
 });
 
 module.exports = routes;

@@ -23,6 +23,7 @@
     "express": "^5.1.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.4",
+    "passport": "^0.7.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
